@@ -33,37 +33,39 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-        'codeno' => 'required',
-        'name' => 'required',
-        'photo' => 'required',
-        'price' => 'required',
-        'discount' => 'required',
-        'description' => 'required',
-        'brand' => 'required',
-        'subcategory' => 'required',
+         $request->validate([
+            'codeno' => 'required',
+            'name' => 'required',
+            'photo' => 'required',
+            'price' => 'required',
+            'discount' => 'required',
+            'description' => 'required',
+            'brand' => 'required',
+            'subcategory' => 'required',
+
         ]);
 
-        //file upload
+        // File Upload
+        $imageName = time().'.'.$request->photo->extension();
 
-        // $imageName = time() .'.'.$request->inputPhoto->extension();
+        $request->photo->move(public_path('images/itemimg'),$imageName);
+        $myfile = 'images/itemimg/'.$imageName;
 
-        // $request->inputPhoto->move(public_path('backendtemplate/itemimg'),$imageName);
-
-        // $myfile='backendtemplate/itemimg/'.$imageName;
-
-
-        //store data ->store with database name
+        // Store Data
         $item = new Item;
-        $item->codeno =$request->codeno;
-        $item->name=$request->name;
-         $item->photo=$request->photo;
-        $item->price=$request->price;
-        $item->discount=$request->discount;
-        $item->description=$request->description;
-        $item->brand_id=$request->brand;
-        $item->subcategory_id=$request->subcategory;
+        $item->codeno = $request->codeno;
+        $item->name = $request->name;
+        $item->photo = $myfile;
+        $item->price = $request->price;
+        $item->discount = $request->discount;
+        $item->description = $request->description;
+        $item->brand_id = $request->brand;
+        $item->subcategory_id = $request->subcategory;
+
         $item->save();
+
+        // // Redirect
+        // Alert::success('Success!', 'New Item Inserted Successfully.');
 
         //redirect
         return new ItemResource($item);

@@ -30,7 +30,30 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'photo' => 'required',
+        ]);
+
+        // File Upload
+        $imageName = time().'.'.$request->photo->extension();
+
+        $request->photo->move(public_path('images/brandimg'),$imageName);
+        $myfile = 'images/brandimg/'.$imageName;
+
+        // Store Data
+        $brand = new Brand;
+        $brand->name = $request->name;
+        $brand->photo = $myfile;
+
+        $brand->save();
+
+
+        // // Redirect
+        // Alert::success('Success!', 'New Item Inserted Successfully.');
+
+        //redirect
+        return new BrandResource($brand);
     }
 
     /**

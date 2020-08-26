@@ -28,7 +28,26 @@ class SubcategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'category' => 'required',
+        ]);
+
+        // File Upload
+        
+        // Store Data
+        $subcategory = new Subcategory;
+        $subcategory->name = $request->name;
+        $subcategory->category_id = $request->category;
+
+        $subcategory->save();
+
+        return new Subcategory($subcategory);
+
+        // Redirect
+        // Alert::success('Success!', 'New Subcategory Inserted Successfully.');
+
+        // return redirect()->route('subcategories.index');
     }
 
     /**

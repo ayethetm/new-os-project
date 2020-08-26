@@ -28,7 +28,25 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'photo' => 'required',
+        ]);
+
+        // File Upload
+        $imageName = time().'.'.$request->photo->extension();
+
+        $request->photo->move(public_path('images/categoryimg'),$imageName);
+        $myfile = 'images/categoryimg/'.$imageName;
+
+        // Store Data
+        $category = new Category;
+        $category->name = $request->name;
+        $category->photo = $myfile;
+
+        $category->save();
+
+        return new CategoryResource($category);
     }
 
     /**
