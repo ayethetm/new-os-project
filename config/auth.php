@@ -42,7 +42,7 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'users',
             'hash' => false,
         ],
@@ -114,4 +114,14 @@ return [
 
     'password_timeout' => 10800,
 
+
+
+    // laravel passport
+    //key generate / token generate
+
+    //composer require laravel/passport
+
+    //php artisan migrate
+
+    
 ];

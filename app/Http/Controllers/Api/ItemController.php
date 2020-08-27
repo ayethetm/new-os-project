@@ -9,6 +9,12 @@ use App\Http\Resources\ItemResource;
 
 class ItemController extends Controller
 {
+    // web page authentication
+    //login with token
+    public function __construct($value='')
+    {
+        $this->middleware('auth:api')->except('index');
+    }
     /**
      * Display a listing of the resource.
      *
