@@ -24,3 +24,9 @@ Route::apiresource('subcategories','Api\SubcategoryController');
 Route::apiresource('items','Api\ItemController');
 Route::apiresource('users','Api\UserController');
 
+
+//search by subcategory_id and brand_id
+Route::get('filter/{sid}/{bid}','Api\ItemController@filter')->name('filter');
+
+//search by item_name or codeno
+Route::get('search/{s}','Api\ItemController@search')->name('search');

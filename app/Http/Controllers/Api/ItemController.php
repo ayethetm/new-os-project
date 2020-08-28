@@ -13,7 +13,7 @@ class ItemController extends Controller
     //login with token
     public function __construct($value='')
     {
-        $this->middleware('auth:api')->except('index');
+        $this->middleware('auth:api')->except('index','filter');
     }
     /**
      * Display a listing of the resource.
@@ -110,4 +110,32 @@ class ItemController extends Controller
     {
         //
     }
+
+
+    public function filter($sid,$bid)
+    {
+        $items = array();
+        if ($sid && $bid) {
+            $items=Item::where('subcategory_id',$sid)
+            ->where('brand_id',$bid)
+            ->get();
+        }
+        return $items;
+    }
+
+    public function search($s)
+    {
+        $items = array();
+        if ($s) 
+        {
+            $items=Item::where('name', $s)
+            ->orwhere('codeno',$s)
+            ->get();
+        }
+        return $items;
+    }
+
 }
+
+
+    
