@@ -9,7 +9,7 @@ $factory->define(Item::class, function (Faker $faker) {
     return [
         'codeno' => $faker->name,
         'name' =>$faker->name,
-        'photo' => 'itemimg/' . $faker->image('public/images/itemimg',400,300, null, false),
+        'photo' => 'backend/itemimg/' . $faker->image('public/backend/itemimg',400,300, null, false),
         'price' => $faker->randomNumber(4),
         'discount' =>$faker->randomNumber(1),
         'description'=>$faker->text,

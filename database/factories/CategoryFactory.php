@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(Category::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'photo' => 'categoryimg/' . $faker->image('public/images/categoryimg',400,300, null, false),
+        'photo' => 'backend/categoryimg/' . $faker->image('public/backend/categoryimg',400,300, null, false),
     ];
 });

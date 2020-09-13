@@ -18,11 +18,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+Route::prefix('v1')->group(function () {
+
 Route::apiresource('brands','Api\BrandController');
-Route::apiresource('categories','Api\CategoryController');
+
 Route::apiresource('subcategories','Api\SubcategoryController');
+
 Route::apiresource('items','Api\ItemController');
-Route::apiresource('users','Api\UserController');
+
+
+Route::apiresource('orders','Api\OrderController');
+
+Route::post('register','Api\AuthController@register')->name('register');
+
+});
 
 
 //search by subcategory_id and brand_id

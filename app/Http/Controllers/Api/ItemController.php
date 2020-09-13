@@ -54,8 +54,8 @@ class ItemController extends Controller
         // File Upload
         $imageName = time().'.'.$request->photo->extension();
 
-        $request->photo->move(public_path('images/itemimg'),$imageName);
-        $myfile = 'images/itemimg/'.$imageName;
+        $request->photo->move(public_path('backend/itemimg'),$imageName);
+        $myfile = 'backend/itemimg/'.$imageName;
 
         // Store Data
         $item = new Item;

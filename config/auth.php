@@ -114,14 +114,4 @@ return [
 
     'password_timeout' => 10800,
 
-
-
-    // laravel passport
-    //key generate / token generate
-
-    //composer require laravel/passport
-
-    //php artisan migrate
-
-    
 ];

@@ -12,15 +12,17 @@ class BrandResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+    public static $wrap = 'brand';
+
     public function toArray($request)
     {
-        // return parent::toArray($request);
-        //define new return 
-        return[
-            "brand_id"=>$this->id,
-            "brand_name"=>$this->name,
-            "brand_photo"=>url($this->photo)
-            //with current application domain address
+        return [
+            'brand_id' => $this->id,
+            'brand_name' => $this->name,
+            // 'brand_photo' => $this->photo,
+            'brand_photo' => url($this->photo),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }
